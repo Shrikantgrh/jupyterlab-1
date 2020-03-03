@@ -194,13 +194,13 @@ function createApp(manager: ServiceManager.IManager): void {
       return fbWidget.paste();
     }
   });
-  commands.addCommand('file-download', {
+  /**commands.addCommand('file-download', {
     label: 'Download',
     icon: 'fa fa-download',
     execute: () => {
       return fbWidget.download();
     }
-  });
+  });*/
   commands.addCommand('file-shutdown-kernel', {
     label: 'Shut Down Kernel',
     icon: 'fa fa-stop-circle-o',

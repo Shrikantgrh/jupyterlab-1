@@ -90,10 +90,7 @@ export namespace MenuSvg {
 
       /* <DEPRECATED> */
       if (typeof data.item.icon === 'string') {
-        return h.div(
-          { className: classes(className, 'jp-Icon') },
-          data.item.iconLabel
-        );
+        return h.div({ className }, data.item.iconLabel);
       }
       /* </DEPRECATED> */
 

@@ -5,7 +5,7 @@
 
 import { ISettingRegistry } from '@jupyterlab/settingregistry';
 
-import { classes, LabIcon, settingsIcon } from '@jupyterlab/ui-components';
+import { LabIcon, settingsIcon } from '@jupyterlab/ui-components';
 
 import { Message } from '@lumino/messaging';
 
@@ -278,7 +278,7 @@ namespace Private {
         >
           <LabIcon.resolveReact
             icon={icon}
-            iconClass={iconClass && classes(iconClass, 'jp-Icon')}
+            iconClass={iconClass}
             fallback={settingsIcon}
             title={iconTitle}
             tag="span"

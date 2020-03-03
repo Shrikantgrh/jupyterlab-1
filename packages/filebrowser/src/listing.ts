@@ -23,7 +23,6 @@ import { Contents } from '@jupyterlab/services';
 import {
   caretDownIcon,
   caretUpIcon,
-  classes,
   fileIcon,
   LabIcon
 } from '@jupyterlab/ui-components';
@@ -673,16 +672,16 @@ export class DirListing extends Widget {
     node.addEventListener('keydown', this);
     node.addEventListener('click', this);
     node.addEventListener('dblclick', this);
-    content.addEventListener('dragenter', this);
-    content.addEventListener('dragover', this);
-    content.addEventListener('dragleave', this);
-    content.addEventListener('dragend', this);
-    content.addEventListener('drop', this);
+    //content.addEventListener('dragenter', this);
+    //content.addEventListener('dragover', this);
+    //content.addEventListener('dragleave', this);
+    //content.addEventListener('dragend', this);
+    //content.addEventListener('drop', this);
     content.addEventListener('scroll', this);
-    content.addEventListener('lm-dragenter', this);
-    content.addEventListener('lm-dragleave', this);
-    content.addEventListener('lm-dragover', this);
-    content.addEventListener('lm-drop', this);
+    //content.addEventListener('lm-dragenter', this);
+    //content.addEventListener('lm-dragleave', this);
+   // content.addEventListener('lm-dragover', this);
+    //content.addEventListener('lm-drop', this);
   }
 
   /**
@@ -1086,7 +1085,7 @@ export class DirListing extends Widget {
   private _evtDragOver(event: IDragEvent): void {
     event.preventDefault();
     event.stopPropagation();
-    event.dropAction = event.proposedAction;
+    //event.dropAction = event.proposedAction;
     let dropTarget = DOMUtils.findElement(this.node, DROP_TARGET_CLASS);
     if (dropTarget) {
       dropTarget.classList.remove(DROP_TARGET_CLASS);
@@ -1132,11 +1131,11 @@ export class DirListing extends Widget {
     const promises: Promise<Contents.IModel | null>[] = [];
     const paths = event.mimeData.getData(CONTENTS_MIME) as string[];
 
-    if (event.ctrlKey && event.proposedAction === 'move') {
+    /**if (event.ctrlKey && event.proposedAction === 'move') {
       event.dropAction = 'copy';
     } else {
       event.dropAction = event.proposedAction;
-    }
+    }*/
     for (let path of paths) {
       let localPath = manager.services.contents.localPath(path);
       let name = PathExt.basename(localPath);
@@ -1146,11 +1145,11 @@ export class DirListing extends Widget {
         continue;
       }
 
-      if (event.dropAction === 'copy') {
+      /**if (event.dropAction === 'copy') {
         promises.push(manager.copy(path, basePath));
       } else {
         promises.push(renameFile(manager, path, newPath));
-      }
+      }*/
     }
     Promise.all(promises).catch(error => {
       void showErrorMessage('Error while copying/moving files', error);
@@ -1837,7 +1836,7 @@ export namespace DirListing {
       // render the file item's icon
       LabIcon.resolveElement({
         icon: fileType?.icon,
-        iconClass: classes(fileType?.iconClass, 'jp-Icon'),
+        iconClass: fileType?.iconClass,
         fallback: fileIcon,
         container: iconContainer,
         className: ITEM_ICON_CLASS,

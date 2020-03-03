@@ -19,7 +19,7 @@ import { DirListing } from './listing';
 
 import { FileBrowserModel } from './model';
 
-import { Uploader } from './upload';
+//import { Uploader } from './upload';
 
 /**
  * The class name added to file browsers.
@@ -75,7 +75,7 @@ export class FileBrowser extends Widget {
       },
       tooltip: 'New Folder'
     });
-    const uploader = new Uploader({ model });
+    //const uploader = new Uploader({ model });
     const refresher = new ToolbarButton({
       icon: refreshIcon,
       onClick: () => {
@@ -85,7 +85,7 @@ export class FileBrowser extends Widget {
     });
 
     this.toolbar.addItem('newFolder', newFolder);
-    this.toolbar.addItem('upload', uploader);
+    //this.toolbar.addItem('upload', uploader);
     this.toolbar.addItem('refresher', refresher);
 
     this._listing = new DirListing({ model, renderer });
@@ -166,9 +166,9 @@ export class FileBrowser extends Widget {
    *
    * @returns A promise that resolves when the operation is complete.
    */
-  paste(): Promise<void> {
+  /**paste(): Promise<void> {
     return this._listing.paste();
-  }
+  }*/
 
   /**
    * Create a new directory

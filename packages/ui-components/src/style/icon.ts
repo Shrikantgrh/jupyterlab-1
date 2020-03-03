@@ -210,8 +210,7 @@ export namespace LabIconStyle {
 
     launcherCard: {
       container: {
-        height: '52px',
-        width: '52px'
+        height: '68px'
       },
       element: {
         height: '52px',
@@ -225,9 +224,7 @@ export namespace LabIconStyle {
     launcherSection: {
       container: {
         boxSizing: 'border-box',
-        marginRight: '12px',
-        height: '32px',
-        width: '32px'
+        marginRight: '12px'
       },
       element: {
         height: '32px',
@@ -388,7 +385,6 @@ export namespace LabIconStyle {
         }
       },
       element: {
-        // width no height
         width: '20px'
       },
       options: {
@@ -404,7 +400,6 @@ export namespace LabIconStyle {
         zIndex: 1
       },
       element: {
-        // width no height
         width: '100px'
       },
       options: {

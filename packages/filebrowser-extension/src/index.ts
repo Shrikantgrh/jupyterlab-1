@@ -19,7 +19,7 @@ import {
   showErrorMessage
 } from '@jupyterlab/apputils';
 
-import { PageConfig, PathExt, URLExt } from '@jupyterlab/coreutils';
+//import { PageConfig, PathExt, URLExt } from '@jupyterlab/coreutils';
 
 import { IDocumentManager } from '@jupyterlab/docmanager';
 
@@ -47,16 +47,16 @@ import {
   closeIcon,
   copyIcon,
   cutIcon,
-  downloadIcon,
+ downloadIcon,
   editIcon,
   fileIcon,
   folderIcon,
-  linkIcon,
+  //linkIcon,
   markdownIcon,
   newFolderIcon,
-  pasteIcon,
+  //pasteIcon,
   stopIcon,
-  textEditorIcon
+ // textEditorIcon
 } from '@jupyterlab/ui-components';
 
 import { IIterator, map, reduce, toArray, find } from '@lumino/algorithm';
@@ -73,7 +73,7 @@ import { Menu } from '@lumino/widgets';
 namespace CommandIDs {
   export const copy = 'filebrowser:copy';
 
-  export const copyDownloadLink = 'filebrowser:copy-download-link';
+  //export const copyDownloadLink = 'filebrowser:copy-download-link';
 
   // For main browser only.
   export const createLauncher = 'filebrowser:create-main-launcher';
@@ -97,7 +97,7 @@ namespace CommandIDs {
 
   export const openBrowserTab = 'filebrowser:open-browser-tab';
 
-  export const paste = 'filebrowser:paste';
+  //export const paste = 'filebrowser:paste';
 
   export const createNewDirectory = 'filebrowser:create-new-directory';
 
@@ -163,12 +163,12 @@ const factory: JupyterFrontEndPlugin<IFileBrowserFactory> = {
  * /user-redirect URL for JupyterHub), disable this plugin and replace it
  * with another implementation.
  */
-const shareFile: JupyterFrontEndPlugin<void> = {
+/**const shareFile: JupyterFrontEndPlugin<void> = {
   activate: activateShareFile,
   id: '@jupyterlab/filebrowser-extension:share-file',
   requires: [IFileBrowserFactory],
   autoStart: true
-};
+};*/
 
 /**
  * A plugin providing file upload status.
@@ -216,7 +216,7 @@ const namespace = 'filebrowser';
 const plugins: JupyterFrontEndPlugin<any>[] = [
   factory,
   browser,
-  shareFile,
+  //shareFile,
   fileUploadStatus
 ];
 export default plugins;
@@ -388,7 +388,7 @@ function activateBrowser(
   });
 }
 
-function activateShareFile(
+/**function activateShareFile(
   app: JupyterFrontEnd,
   factory: IFileBrowserFactory
 ): void {
@@ -411,7 +411,7 @@ function activateShareFile(
     icon: linkIcon.bindprops({ stylesheet: 'menuItem' }),
     label: 'Copy Shareable Link'
   });
-}
+}*/
 
 /**
  * Add the main file browser commands to the application's command registry.
@@ -471,7 +471,7 @@ function addCommands(
       const widget = tracker.currentWidget;
 
       if (widget) {
-        return widget.download();
+       return widget.download();
       }
     },
     icon: downloadIcon.bindprops({ stylesheet: 'menuItem' }),
@@ -575,7 +575,7 @@ function addCommands(
     });
   }
 
-  commands.addCommand(CommandIDs.open, {
+  /**commands.addCommand(CommandIDs.open, {
     execute: args => {
       const factory = (args['factory'] as string) || void 0;
       const widget = tracker.currentWidget;
@@ -615,7 +615,7 @@ function addCommands(
     },
     label: args => (args['label'] || args['factory'] || 'Open') as string,
     mnemonic: 0
-  });
+  });*/
 
   commands.addCommand(CommandIDs.openBrowserTab, {
     execute: () => {
@@ -640,7 +640,7 @@ function addCommands(
     mnemonic: 0
   });
 
-  commands.addCommand(CommandIDs.copyDownloadLink, {
+  /**commands.addCommand(CommandIDs.copyDownloadLink, {
     execute: () => {
       const widget = tracker.currentWidget;
       if (!widget) {
@@ -656,9 +656,9 @@ function addCommands(
     icon: copyIcon.bindprops({ stylesheet: 'menuItem' }),
     label: 'Copy Download Link',
     mnemonic: 0
-  });
+  });*/
 
-  commands.addCommand(CommandIDs.paste, {
+ /** commands.addCommand(CommandIDs.paste, {
     execute: () => {
       const widget = tracker.currentWidget;
 
@@ -669,7 +669,7 @@ function addCommands(
     icon: pasteIcon.bindprops({ stylesheet: 'menuItem' }),
     label: 'Paste',
     mnemonic: 0
-  });
+  });*/
 
   commands.addCommand(CommandIDs.createNewDirectory, {
     execute: () => {
@@ -683,7 +683,7 @@ function addCommands(
     label: 'New Folder'
   });
 
-  commands.addCommand(CommandIDs.createNewFile, {
+  /**commands.addCommand(CommandIDs.createNewFile, {
     execute: () => {
       const {
         model: { path }
@@ -696,7 +696,7 @@ function addCommands(
     },
     icon: textEditorIcon.bindprops({ stylesheet: 'menuItem' }),
     label: 'New File'
-  });
+  });*/
 
   commands.addCommand(CommandIDs.createNewMarkdownFile, {
     execute: () => {
@@ -917,7 +917,7 @@ function addCommands(
     rank: 1
   });
 
-  app.contextMenu.addItem({
+  /**app.contextMenu.addItem({
     command: CommandIDs.createNewFile,
     selector: selectorContent,
     rank: 2
@@ -939,7 +939,7 @@ function addCommands(
     command: CommandIDs.open,
     selector: selectorItem,
     rank: 1
-  });
+  });*/
 
   const openWith = new OpenWithMenu({ commands });
   openWith.title.label = 'Open With';
@@ -961,11 +961,11 @@ function addCommands(
     selector: selectorItem,
     rank: 4
   });
-  app.contextMenu.addItem({
+  /**app.contextMenu.addItem({
     command: CommandIDs.del,
     selector: selectorItem,
     rank: 5
-  });
+  });*/
   app.contextMenu.addItem({
     command: CommandIDs.cut,
     selector: selectorItem,
@@ -983,11 +983,13 @@ function addCommands(
     selector: selectorNotDir,
     rank: 8
   });
-  app.contextMenu.addItem({
+  /**
+ app.contextMenu.addItem({
     command: CommandIDs.download,
     selector: selectorNotDir,
     rank: 9
   });
+   
   app.contextMenu.addItem({
     command: CommandIDs.shutdown,
     selector: selectorNotDir,
@@ -1008,7 +1010,7 @@ function addCommands(
     command: CommandIDs.copyDownloadLink,
     selector: selectorNotDir,
     rank: 13
-  });
+  });*/
 }
 
 /**
@@ -1078,17 +1080,17 @@ namespace Private {
       throw new Error('No browser for path');
     }
     const { services } = browserForPath.model.manager;
-    const localPath = services.contents.localPath(path);
+    //const localPath = services.contents.localPath(path);
 
     await services.ready;
     let item = await services.contents.get(path, { content: false });
     const { model } = browserForPath;
     await model.restored;
-    if (item.type === 'directory') {
+    /**if (item.type === 'directory') {
       await model.cd(`/${localPath}`);
     } else {
       await model.cd(`/${PathExt.dirname(localPath)}`);
-    }
+    }*/
     return item;
   }
 

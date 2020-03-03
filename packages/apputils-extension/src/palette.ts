@@ -29,6 +29,7 @@ export class Palette implements ICommandPalette {
    */
   constructor(palette: CommandPalette) {
     this._palette = palette;
+    this._palette.title.icon = paletteIcon;
     this._palette.title.label = '';
     this._palette.title.caption = 'Command Palette';
   }

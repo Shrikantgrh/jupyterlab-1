@@ -87,7 +87,7 @@ import { DisposableSet } from '@lumino/disposable';
 
 import { Message, MessageLoop } from '@lumino/messaging';
 
-import { Panel, Menu } from '@lumino/widgets';
+import { Panel/** , Menu */ } from '@lumino/widgets';
 
 /**
  * The command IDs used by the notebook plugin.
@@ -239,7 +239,7 @@ const FACTORY = 'Notebook';
  * The exluded Export To ...
  * (returned from nbconvert's export list)
  */
-const FORMAT_EXCLUDE = ['notebook', 'python', 'custom'];
+//const FORMAT_EXCLUDE = ['notebook', 'python', 'custom'];
 
 /**
  * The exluded Cell Inspector Raw NbConvert Formats
@@ -1194,7 +1194,7 @@ function addCommands(
     },
     isEnabled
   });
-  commands.addCommand(CommandIDs.exportToFormat, {
+  /**commands.addCommand(CommandIDs.exportToFormat, {
     label: args => {
       const formatLabel = args['label'] as string;
 
@@ -1230,7 +1230,7 @@ function addCommands(
       });
     },
     isEnabled
-  });
+  });*/
   commands.addCommand(CommandIDs.restartClear, {
     label: 'Restart Kernel and Clear All Outputs…',
     execute: args => {
@@ -2079,8 +2079,8 @@ function populateMenus(
   } as IFileMenu.ICloseAndCleaner<NotebookPanel>);
 
   // Add a notebook group to the File menu.
-  let exportTo = new Menu({ commands });
-  exportTo.title.label = 'Export Notebook As…';
+  //let exportTo = new Menu({ commands });
+  /** exportTo.title.label = 'Export Notebook As…';
   void services.nbconvert.getExportFormats().then(response => {
     if (response) {
       // Convert export list to palette and menu items.
@@ -2113,7 +2113,7 @@ function populateMenus(
       ];
       mainMenu.fileMenu.addGroup(fileGroup, 10);
     }
-  });
+  });*/
 
   // Add a kernel user to the Kernel menu
   mainMenu.kernelMenu.kernelUsers.add({
